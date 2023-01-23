@@ -1,13 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+import StackNavigator from './StackNavigator';
 export default function App() {
   return (
-    <View style={styles.container}>
-     <HomeScreen />
+    <>
+     <StackNavigator />
       <StatusBar style="auto" />
-    </View>
+    </>
   );
 }
 
