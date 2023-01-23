@@ -3,15 +3,15 @@ import React from 'react'
 import Header from '../components/Header'
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
        <Header />
-    </View>
+    </SafeAreaView>
   );
 };
 export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:"pink",
+    backgroundColor:"#E0E0E0",
   },
 });
