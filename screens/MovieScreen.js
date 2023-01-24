@@ -2,6 +2,7 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
+import HorizontalDatepicker from '@awrminkhodaei/react-native-horizontal-datepicker';
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { AntDesign } from '@expo/vector-icons';
 const MovieScreen = () => {
@@ -24,6 +25,22 @@ const MovieScreen = () => {
       <AntDesign name="Safety" size={24} color="black" />
       <Text style={{marginHorizontal:5, alignContent:"center"}}>Your Safety is our Priority</Text>
       </View>
+         <HorizontalDatepicker
+        mode="gregorian"
+        startDate={new Date("2022-08-24")}
+        endDate={new Date("2022-08-30")}
+        initialSelectedDate={new Date("2020-08-22")}
+        onSelectedDateChange={(date) => setSelectedDate(date)}
+        selectedItemWidth={170}
+        unselectedItemWidth={38}
+        itemHeight={38}
+        itemRadius={10}
+        selectedItemTextStyle={styles.selectedItemTextStyle}
+        unselectedItemTextStyle={styles.selectedItemTextStyle}
+        selectedItemBackgroundColor="#222831"
+        unselectedItemBackgroundColor="#ececec"
+        flatListContainerStyle={styles.flatListContainerStyle}
+      />
     </SafeAreaView>
   )
 }
