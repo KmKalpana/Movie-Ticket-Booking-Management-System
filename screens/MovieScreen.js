@@ -62,7 +62,7 @@ const MovieScreen = () => {
               data={item.showtimes}
               renderItem={({ item }) => (
                 <Pressable
-                onPress={() => navigation.navigate("Theatre",{
+                onPress={() => navigation.navigate("theatre",{
                   mall:mall,
                   name:route.params.name,
                   timeSelected:item,
