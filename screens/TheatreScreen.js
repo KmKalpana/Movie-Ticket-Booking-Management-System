@@ -23,6 +23,18 @@ const TheatreScreen = () => {
      console.log("Seats")
   }
   console.log(route.params)
+  const showSeats=()=>{
+    return (
+      <View style={{flexDirection:"row", alignItems:"center"}}>
+       {seats.map((seat,index) => (
+      <Text style={{marginTop:4, fontSize:17, paddingHorizontal:4}}>{seat}</Text>
+    )
+    )
+    }
+    </View>
+    )
+   
+  }
   return (
     <SafeAreaView>
       <View
@@ -150,7 +162,13 @@ const TheatreScreen = () => {
           <Text style={{ marginBottom: 4, fontSize: 15, fontWeight: '500' }}>
             Show End Time Approx 6:50pm
           </Text>
-          <Text style={{ fontSize: 18 }}>No Seats Selected</Text>
+          { seats.length > 0 ? (
+            showSeats()
+          )
+          :(
+            <Text style={{ fontSize: 18 }}>No Seats Selected</Text>
+          )
+          }
         </View>
         <View>
           <Text style={{ width: 100 }}>Now with Ticket Cancellation</Text>
