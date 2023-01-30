@@ -13,6 +13,7 @@ const StackNavigator = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Movies" component={MovieScreen} options={{headerShown:false}} />
         <Stack.Screen name="theatre" component={TheatreScreen} options={{headerShown:false}} />
+        <Stack.Screen name="Ticket" component={TheatreScreen} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
   )

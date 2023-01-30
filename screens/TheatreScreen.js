@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 import { FontAwesome } from '@expo/vector-icons'
 import { MovieCards } from '../Context'
-import { setStatusBarNetworkActivityIndicatorVisible } from 'expo-status-bar'
+import { useStripe } from "@stripe/stripe-react-native";
 const TheatreScreen = () => {
   const route = useRoute()
   const navigation = useNavigation()
@@ -20,13 +20,13 @@ const TheatreScreen = () => {
     else{
       setSeats([...seats, item]);
     }
-     console.log("Seats")
+    //  console.log("Seats")
   }
   //Amount Part
   const fee=87;
   const NoOfSheats=seats.length;
   const total=seats.length>0 ?fee+NoOfSheats*240:0;
-  console.log(total)
+  // console.log(total)
   const showSeats=()=>{
     return (
       <View style={{flexDirection:"row", alignItems:"center"}}>
@@ -38,6 +38,36 @@ const TheatreScreen = () => {
     </View>
     )
    
+  }
+    const stripe = useStripe();
+  const Subscribe = async() => {
+    const response = await fetch("http://localhost:8000/payment", {
+      method: "POST",
+      body: JSON.stringify({
+        amount:Math.floor(total * 100),
+
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    if (!response.ok) return Alert.alert(data.message);
+    const clientSecret = data.clientSecret;
+    const initSheet = await stripe.initPaymentSheet({
+      paymentIntentClientSecret: clientSecret,
+    });
+    if (initSheet.error) return Alert.alert(initSheet.error.message);
+    const presentSheet = await stripe.presentPaymentSheet({
+      clientSecret,
+    });
+    if (presentSheet.error) return Alert.alert(presentSheet.error.message);
+
+    else{
+     navigation.push("/Ticket")
+    }
+
   }
   return (
     <SafeAreaView>
@@ -195,8 +225,8 @@ const TheatreScreen = () => {
           <Text></Text>
         )
       }
-      <Pressable>
-        <Text style={{fontWeight:"600"}}> Pay 0</Text>
+      <Pressable onPress={Subscribe}>
+        <Text style={{fontWeight:"600"}}> Pay {total}</Text>
       </Pressable>
       </Pressable>
     </SafeAreaView>
