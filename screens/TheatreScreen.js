@@ -22,7 +22,7 @@ const TheatreScreen = () => {
     }
      console.log("Seats")
   }
-  console.log(route.params)
+  //Amount Part
   const showSeats=()=>{
     return (
       <View style={{flexDirection:"row", alignItems:"center"}}>
