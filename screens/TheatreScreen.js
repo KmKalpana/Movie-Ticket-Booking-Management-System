@@ -23,6 +23,10 @@ const TheatreScreen = () => {
      console.log("Seats")
   }
   //Amount Part
+  const fee=87;
+  const NoOfSheats=seats.length;
+  const total=seats.length>0 ?fee+NoOfSheats*240:0;
+  console.log(total)
   const showSeats=()=>{
     return (
       <View style={{flexDirection:"row", alignItems:"center"}}>
